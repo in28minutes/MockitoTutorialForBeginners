@@ -1,5 +1,5 @@
-# Title of the Best Course in the world
-## Caption for the course.
+# Mockito Tutorial For Beginners
+## Gain expertise on the most popular java mocking framework
 
 * [Installing Eclipse, Maven and Java](#installing-tools)
 * [Running Examples](#running-examples)
@@ -37,7 +37,7 @@
 - Because our goal is to get you up to speed as quickly as possible, we’ll cover the different kinds of pasta around the world, equipment basics, ingredient prep, shaping techniques, the ideal water-to-starch ratio, boiling methods, and some of my favorite family recipes.  At the end of the course you’ll be a past-making maestro, with enough confidence to open a pop-up restaurant, or just host a delicious dinner party.
 
 ###Step List
-- TODO
+- Step 01 : Green Bar - a Successful JUnit Test.
 - TODO
 
 ###Expectations
