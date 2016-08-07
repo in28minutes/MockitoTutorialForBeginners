@@ -3,6 +3,7 @@
 - Multiple return values
 - Introduction to Argument Matchers
 - stub method
+- Throwing exceptions
 
 ## Exercises
 - What if we combine a matcher with hardcoded value when stubbing.
