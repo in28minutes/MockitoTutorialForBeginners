@@ -1,19 +1,10 @@
 ##What You Will Learn during this Step:
-- Your first Mockito code! Hurrah!!!
-- Lets use Mockito to mock TodoService
-
-## Useful Snippets and References
-Easier Static Imports
-```
-Window > Preferences > Java > Editor > Content Assist > Favorites
-org.junit.Assert.*
-org.mockito.BDDMockito.*
-org.mockito.Mockito.*
-```
+- A few mockito examples mocking List class
+- Multiple return values
+- Introduction to Argument Matchers
 ## Exercises
-- Play around with code
-- Think what JUnit best practises we are NOT adhering to
-- Visit Mockito Official Documentation - [Mockito Documentation] (http://site.mockito.org/mockito/docs/current/org/mockito/Mockito.html)
+- What if we combine a matcher with hardcoded value when stubbing.
+- Mock a few other List Methods
 ## Files List
 ### /pom.xml
 ```
@@ -162,6 +153,56 @@ public class FirstMockitoTest {
 	@Test
 	public void test() {
 		assertTrue(true);
+	}
+
+}
+```
+### /src/test/java/com/in28minutes/mockito/ListTest.java
+```
+package com.in28minutes.mockito;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.mockito.Mockito.mock;
+
+import java.util.List;
+
+import org.junit.Test;
+import org.mockito.Mockito;
+
+public class ListTest {
+
+	@Test
+	public void letsMockListSize() {
+		List list = mock(List.class);
+		Mockito.when(list.size()).thenReturn(10);
+		assertEquals(10, list.size());
+	}
+
+	@Test
+	public void letsMockListSizeWithMultipleReturnValues() {
+		List list = mock(List.class);
+		Mockito.when(list.size()).thenReturn(10).thenReturn(20);
+		assertEquals(10, list.size()); // First Call
+		assertEquals(20, list.size()); // Second Call
+	}
+
+	@Test
+	public void letsMockListGet() {
+		List<String> list = mock(List.class);
+		Mockito.when(list.get(0)).thenReturn("in28Minutes");
+		assertEquals("in28Minutes", list.get(0));
+		assertNull(list.get(1));
+	}
+
+	@Test
+	public void letsMockListGetWithAny() {
+		List<String> list = mock(List.class);
+		Mockito.when(list.get(Mockito.anyInt())).thenReturn("in28Minutes");
+		// If you are using argument matchers, all arguments
+		// have to be provided by matchers.
+		assertEquals("in28Minutes", list.get(0));
+		assertEquals("in28Minutes", list.get(1));
 	}
 
 }
