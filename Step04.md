@@ -6,9 +6,11 @@
 Easier Static Imports
 ```
 Window > Preferences > Java > Editor > Content Assist > Favorites
-org.junit.Assert.*
-org.mockito.BDDMockito.*
-org.mockito.Mockito.*
+org.junit.Assert
+org.mockito.BDDMockito
+org.mockito.Mockito
+org.hamcrest.Matchers
+org.hamcrest.CoreMatchers
 ```
 ## Exercises
 - Play around with code

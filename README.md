@@ -1,6 +1,9 @@
 # Mockito Tutorial For Beginners
 ## Gain expertise on the most popular java mocking framework
 
+## TODO
+- Stubbing Exceptions
+
 * [Installing Eclipse, Maven and Java](#installing-tools)
 * [Running Examples](#running-examples)
 * [Course Overview](#course-overview)

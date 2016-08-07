@@ -1,7 +1,10 @@
 package com.in28minutes.mockito;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 
 import java.util.List;
@@ -44,4 +47,15 @@ public class ListTest {
 		assertEquals("in28Minutes", list.get(1));
 	}
 
+	@Test
+	public void bddAliases_UsingGivenWillReturn() {
+		List<String> list = mock(List.class);
+
+		//given
+		given(list.get(Mockito.anyInt())).willReturn("in28Minutes");
+
+		//then
+		assertThat("in28Minutes", is(list.get(0)));
+		assertThat("in28Minutes", is(list.get(0)));
+	}
 }
