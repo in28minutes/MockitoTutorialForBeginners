@@ -3,13 +3,6 @@
 - Create an unit test using Stub?
 - Disadvantages of Stubs
 
-## Useful Snippets/Links
-First Snippet
-```
-```
-Second Snippet
-```
-```
 ## Exercise
 - Improve the asserts for the ArrayList in the test TodoBusinessImplStubTest.
 
