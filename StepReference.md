@@ -2,12 +2,12 @@
 - First
 - Second
 - Third
-
-## Useful Snippets/Links
+## Useful Snippets and References
 First Snippet
 ```
 ```
 Second Snippet
 ```
 ```
+## Exercises
 ## Files List
