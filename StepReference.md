@@ -2,6 +2,7 @@
 - First
 - Second
 - Third
+
 ## Useful Snippets and References
 First Snippet
 ```
@@ -9,5 +10,7 @@ First Snippet
 Second Snippet
 ```
 ```
+
 ## Exercises
+
 ## Files List
