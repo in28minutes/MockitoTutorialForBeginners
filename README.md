@@ -45,19 +45,20 @@
 - Step 03 : What is a stub? Create an unit test using Stub? Disadvantages of Stubs.
 - Step 04 : Your first Mockito code! Hurrah!!! Lets use Mockito to mock TodoService.
 - Step 05 : Stubbing variations with Mockito. A few mockito examples mocking List class : Multiple return values, Argument Matchers and throwing exceptions.
-Step 06 : Introduction to BDD. Given When Then. BDD Mockito Syntax.
-Step 07 : How to verify calls on a mock? Verify how many times a method is called. We will add deleteTodo method to the TodoService.
-Step 08 : How to capture an argument which is passed to a mock?
-Step 09 : Hamcrest Matchers.
-Step 10 : Let's simplify things with Mockito Annotations. @Mock, @InjectMocks, @RunWith(MockitoJUnitRunner.class), @Captor
-Step 11 : JUnit Rules. Using MockitoJUnit.rule() instead of @RunWith(MockitoJUnitRunner.class).
-Step 12 : Real world Example with Spring
-Step 13 : What is a spy? How to spy with Mockito?
-Step 14 : Some Theory : Why does Mockito not allow stubbing final and private methods?
-Step 15 : Using PowerMock and Mockito to mock a Static Method.
-Step 16 : Using PowerMock and Mockito to invoke a private Method.
-Step 17 : Using PowerMock and Mockito to mock a constructor.
-Step 18 : Good Unit Tests.
+- Some Theory : Mockito vs EasyMock [https://github.com/mockito/mockito/wiki/Mockito-vs-EasyMock](https://github.com/mockito/mockito/wiki/Mockito-vs-EasyMock)
+- Step 06 : Introduction to BDD. Given When Then. BDD Mockito Syntax.
+- Step 07 : How to verify calls on a mock? Verify how many times a method is called. We will add deleteTodo method to the TodoService.
+- Step 08 : How to capture an argument which is passed to a mock?
+- Step 09 : Hamcrest Matchers.
+- Step 10 : Let's simplify things with Mockito Annotations. @Mock, @InjectMocks, @RunWith(MockitoJUnitRunner.class), @Captor
+- Step 11 : JUnit Rules. Using MockitoJUnit.rule() instead of @RunWith(MockitoJUnitRunner.class).
+- Step 12 : Real world Example with Spring
+- Step 13 : What is a spy? How to spy with Mockito?
+- Step 14 : Some Theory : Why does Mockito not allow stubbing final and private methods?
+- Step 15 : Using PowerMock and Mockito to mock a Static Method.
+- Step 16 : Using PowerMock and Mockito to invoke a private Method.
+- Step 17 : Using PowerMock and Mockito to mock a constructor.
+- Step 18 : Good Unit Tests.
 
 ###Expectations
 - You should know JUnit. You can find our free JUnit Course here - [JUnit](https://www.udemy.com/junit-tutorial-for-beginners-with-java-examples/)
