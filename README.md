@@ -1,9 +1,6 @@
 # Mockito Tutorial For Beginners
 ## Gain expertise on the most popular java mocking framework
 
-## TODO
-- Stubbing Exceptions
-
 * [Installing Eclipse, Maven and Java](#installing-tools)
 * [Running Examples](#running-examples)
 * [Course Overview](#course-overview)
@@ -17,27 +14,7 @@
 
 ##Installing Tools
 - PDF : https://github.com/in28minutes/SpringIn28Minutes/blob/master/InstallationGuide-JavaEclipseAndMaven_v2.pdf
-- https://www.youtube.com/watch?v=DLPjCZ5n_SM
-
-##Running Examples
-- Download the zip or clone the Git repository.
-- Unzip the zip file (if you downloaded one)
-- Open Command Prompt and Change directory (cd) to folder containing pom.xml
-- Run command "mvn tomcat7:run"
-- For help : use our installation guide - https://github.com/in28minutes/SpringIn28Minutes/blob/master/InstallationGuide-JavaEclipseAndMaven_v2.pdf & https://www.youtube.com/watch?v=DLPjCZ5n_SM
-
-##Course Overview
-- I'm Ranga Karanam. I've so and so much experience with ...
-- In this course, You will learn the Mockito Framework step by step with (*** functionality) using (*** framework features)
-- You will learn the basics like *** and move on to the advanced concepts like ***.
-- You will use 
-  - ... todo ...
-  - Maven for dependency management, building and running the application in tomcat.
-  - Eclipse IDE.
-
-##Reference: 
-- Pasta Making 101 is an introductory course for home chefs seeking to improve their Italian cooking and pasta-making skills. Throughout the course we will cover techniques used by executive chefs throughout the world, and walk you through a step-by-step process for creating these masterpieces at home, and we’ll even include a few “secrets of the pros.
-- Because our goal is to get you up to speed as quickly as possible, we’ll cover the different kinds of pasta around the world, equipment basics, ingredient prep, shaping techniques, the ideal water-to-starch ratio, boiling methods, and some of my favorite family recipes.  At the end of the course you’ll be a past-making maestro, with enough confidence to open a pop-up restaurant, or just host a delicious dinner party.
+- Video : https://www.youtube.com/watch?v=DLPjCZ5n_SM
 
 ###Step List
 - Step 01 : Set up an Eclipse Project with JUnit and Mockito frameworks. First Green Bar.
@@ -76,19 +53,6 @@
   - go ahead and hit that Enroll button, 
   - or take a test drive by using the Free Preview feature.  
 - See you in the course!
-
-##Exercises
-- TODO
-
-##Future Things To Do
-- TODO
-
-##Conclusion
-- Thats a lot of ground you have covered over the last so and so..
-- To find out more about *** use these References  
-- I had fun creating this course and I'm sure you had some fun too.
-- Good Luck and Bye from the team here at in28Minutes
-- Do not forget to leave us a review.
 
 ##About in28Minutes
 - At in28Minutes, we ask ourselves one question everyday. How do we help you learn effectively - that is more quickly and retain more of what you have learnt?
