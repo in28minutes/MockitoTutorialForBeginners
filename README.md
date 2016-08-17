@@ -16,6 +16,7 @@
 - PDF : https://github.com/in28minutes/SpringIn28Minutes/blob/master/InstallationGuide-JavaEclipseAndMaven_v2.pdf
 - Video : https://www.youtube.com/watch?v=DLPjCZ5n_SM
 
+##Course Overview
 ###Step List
 - Step 01 : Set up an Eclipse Project with JUnit and Mockito frameworks. First Green Bar.
 - Step 02 : Example to start understanding why we need mocks.
