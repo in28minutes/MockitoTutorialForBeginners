@@ -55,10 +55,9 @@
 - Step 18 : Good Unit Tests.
 
 ###Expectations
-- You should know JUnit. You can find our free JUnit Course here - [JUnit](https://www.udemy.com/junit-tutorial-for-beginners-with-java-examples/)
-- Though not essential, it might be useful to know Spring. You can find our free Spring course here - [Spring Framework](https://www.udemy.com/spring-tutorial-for-beginners/)
-- You are NOT expected to have any experience with Eclipse,Maven or Tomcat.
-- We will help you install Eclipse and get up and running with Maven and Tomcat.
+- You should know Java.
+- You are NOT expected to have any experience with Eclipse or Maven.
+- We will help you install Eclipse and get up and running with Maven.
 
 ##Let's have some fun
 - What are we waiting for?
