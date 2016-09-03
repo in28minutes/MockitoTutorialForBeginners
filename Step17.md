@@ -1,6 +1,8 @@
 ##What You Will Learn during this Step:
 - Using PowerMock and Mockito to mock a constructor
 - PowerMockitoMockingConstructorTest.java
+-- 	PowerMockito.whenNew(ArrayList.class).withAnyArguments().thenReturn(
+				mockList);
 
 ## Files List
 ### /pom.xml
@@ -687,14 +689,6 @@ public class SystemUnderTest {
 		for (int stat : stats)
 			sum += stat;
 		return UtilityClass.staticMethod(sum);
-	}
-
-	public long normalMethodCallingADependenyMethod() {
-		List<Integer> stats = dependency.retrieveAllStats();
-		long sum = 0;
-		for (int stat : stats)
-			sum += stat;
-		return sum;
 	}
 
 	private long privateMethodUnderTest() {

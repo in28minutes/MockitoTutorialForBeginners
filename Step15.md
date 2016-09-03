@@ -719,14 +719,6 @@ public class SystemUnderTest {
 		return UtilityClass.staticMethod(sum);
 	}
 
-	public long normalMethodCallingADependenyMethod() {
-		List<Integer> stats = dependency.retrieveAllStats();
-		long sum = 0;
-		for (int stat : stats)
-			sum += stat;
-		return sum;
-	}
-
 	private long privateMethodUnderTest() {
 		List<Integer> stats = dependency.retrieveAllStats();
 		long sum = 0;
