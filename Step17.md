@@ -680,7 +680,7 @@ public class SystemUnderTest {
 		return list.size();
 	}
 
-	public int methodUnderTest() {
+	public int methodCallingAStaticMethod() {
 		//privateMethodUnderTest calls static method SomeClass.staticMethod
 		List<Integer> stats = dependency.retrieveAllStats();
 		long sum = 0;
@@ -1706,7 +1706,7 @@ public class PowerMockitoMockingStaticMethodTest {
 
 		when(UtilityClass.staticMethod(anyLong())).thenReturn(150);
 
-		assertEquals(150, systemUnderTest.methodUnderTest());
+		assertEquals(150, systemUnderTest.methodCallingAStaticMethod());
 
 		//To verify a specific method call
 		//First : Call PowerMockito.verifyStatic() 

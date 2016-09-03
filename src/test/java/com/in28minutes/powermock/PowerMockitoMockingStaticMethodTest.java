@@ -34,7 +34,7 @@ public class PowerMockitoMockingStaticMethodTest {
 
 		when(UtilityClass.staticMethod(anyLong())).thenReturn(150);
 
-		assertEquals(150, systemUnderTest.methodUnderTest());
+		assertEquals(150, systemUnderTest.methodCallingAStaticMethod());
 
 		//To verify a specific method call
 		//First : Call PowerMockito.verifyStatic() 
