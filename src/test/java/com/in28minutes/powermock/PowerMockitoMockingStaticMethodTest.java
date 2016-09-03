@@ -15,7 +15,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ SomeClass.class /*The class with static method to be mocked*/})
+@PrepareForTest({ UtilityClass.class /*The class with static method to be mocked*/})
 public class PowerMockitoMockingStaticMethodTest {
 
 	@Mock
@@ -27,12 +27,12 @@ public class PowerMockitoMockingStaticMethodTest {
 	@Test
 	public void powerMockito_MockingAStaticMethodCall() {
 
-		PowerMockito.mockStatic(SomeClass.class);
-
 		when(dependencyMock.retrieveAllStats()).thenReturn(
 				Arrays.asList(1, 2, 3));
 
-		when(SomeClass.staticMethod(anyLong())).thenReturn(150);
+		PowerMockito.mockStatic(UtilityClass.class);
+
+		when(UtilityClass.staticMethod(anyLong())).thenReturn(150);
 
 		assertEquals(150, systemUnderTest.methodUnderTest());
 
@@ -40,7 +40,7 @@ public class PowerMockitoMockingStaticMethodTest {
 		//First : Call PowerMockito.verifyStatic() 
 		//Second : Call the method to be verified
 		PowerMockito.verifyStatic();
-		SomeClass.staticMethod(1 + 2 + 3);
+		UtilityClass.staticMethod(1 + 2 + 3);
 
 		// verify exact number of calls
 		//PowerMockito.verifyStatic(Mockito.times(1));

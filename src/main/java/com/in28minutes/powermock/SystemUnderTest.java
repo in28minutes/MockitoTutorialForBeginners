@@ -3,6 +3,10 @@ package com.in28minutes.powermock;
 import java.util.ArrayList;
 import java.util.List;
 
+interface Dependency {
+	List<Integer> retrieveAllStats();
+}
+
 public class SystemUnderTest {
 	private Dependency dependency;
 
@@ -11,14 +15,13 @@ public class SystemUnderTest {
 		return list.size();
 	}
 
-	public int methodInvokingAFactoryMethodCall() {
-		List list = SomeBean.Factory.create();
-		return list.size();
-	}
-
 	public int methodUnderTest() {
 		//privateMethodUnderTest calls static method SomeClass.staticMethod
-		return privateMethodUnderTest();
+		List<Integer> stats = dependency.retrieveAllStats();
+		long sum = 0;
+		for (int stat : stats)
+			sum += stat;
+		return UtilityClass.staticMethod(sum);
 	}
 
 	public long normalMethodCallingADependenyMethod() {
@@ -29,14 +32,11 @@ public class SystemUnderTest {
 		return sum;
 	}
 
-	private int privateMethodUnderTest() {
+	private long privateMethodUnderTest() {
 		List<Integer> stats = dependency.retrieveAllStats();
 		long sum = 0;
 		for (int stat : stats)
 			sum += stat;
-		return SomeClass.staticMethod(sum);
+		return sum;
 	}
-	//Powermock 1.6.4
-	//Mockito 1.10.19
-	// JUnit 4.4
 }

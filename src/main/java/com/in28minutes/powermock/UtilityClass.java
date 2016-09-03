@@ -1,6 +1,6 @@
 package com.in28minutes.powermock;
 
-public class SomeClass {
+public class UtilityClass {
 	static int staticMethod(long value) {
 		// Some complex logic is done here...
 		throw new RuntimeException(
