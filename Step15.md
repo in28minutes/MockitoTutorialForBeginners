@@ -1,4 +1,4 @@
-##What You Will Learn during this Step:
+## What You Will Learn during this Step:
 - Add dependency on PowerMock.
 - Using PowerMock and Mockito to mock a Static Method.
 - PowerMockitoMockingStaticMethodTest

@@ -1,8 +1,8 @@
-##What You Will Learn during this Step:
+## What You Will Learn during this Step:
 - Using PowerMock and Mockito to invoke a private Method.
 - PowerMockitoTestingPrivateMethodTest
 
-##Snippets
+## Snippets
 ```
 long value = (Long) Whitebox.invokeMethod(systemUnderTest,
 				"privateMethodUnderTest");

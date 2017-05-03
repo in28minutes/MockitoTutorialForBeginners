@@ -1,4 +1,4 @@
-##What You Will Learn during this Step:
+## What You Will Learn during this Step:
 - Start Creating an example to start understanding why we need mocks.
 - We want to interact with a Todo Management application.
 - We want to provide a filtering around Spring related Todo's

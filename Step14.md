@@ -1,4 +1,4 @@
-##What You Will Learn during this Step:
+## What You Will Learn during this Step:
 - Some Theory : Why does Mockito not allow stubbing final and private methods?
 
 ## Useful Snippets and References

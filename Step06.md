@@ -1,4 +1,4 @@
-##What You Will Learn during this Step:
+## What You Will Learn during this Step:
 - Introduction to BDD
 - Given When Then
 - BDD Mockito Syntax

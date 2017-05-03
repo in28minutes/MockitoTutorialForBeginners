@@ -1,4 +1,4 @@
-##What You Will Learn during this Step:
+## What You Will Learn during this Step:
 - How to verify calls on a mock?
   - Verify how many times a method is called.
 - We will add deleteTodo method to the TodoService.

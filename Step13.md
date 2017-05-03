@@ -1,4 +1,4 @@
-##What You Will Learn during this Step:
+## What You Will Learn during this Step:
 - Understand what a Spy does?
 - Creating a spy with Mockito?
 - Overriding specific methods in a spy?

@@ -1,4 +1,4 @@
-##What You Will Learn during this Step:
+## What You Will Learn during this Step:
 - What is a stub?
 - Create an unit test using Stub?
 - Disadvantages of Stubs

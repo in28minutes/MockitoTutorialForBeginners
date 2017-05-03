@@ -1,4 +1,4 @@
-##What You Will Learn during this Step:
+## What You Will Learn during this Step:
 - Set up an Eclipse Project.
 - Set up JUnit and Mockito frameworks.
 - First Green Bar

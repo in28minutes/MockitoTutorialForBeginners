@@ -1,4 +1,4 @@
-##What You Will Learn during this Step:
+## What You Will Learn during this Step:
 - How to capture an argument which is passed to a mock?
 
 ## Useful Snippets and References
