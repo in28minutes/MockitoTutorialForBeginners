@@ -9,7 +9,7 @@
 - What if we combine a matcher with hardcoded value when stubbing.
 - Mock a few other List Methods.
 - What happens if an unstubbed method is called?
-  - By default, for all methods that return a value, a mock will return either null, a a primitive/primitive wrapper value, or an empty collection, as appropriate. For example 0 for an int/Integer and false for a boolean/Boolean. 
+  - By default, for all methods that return a value, a mock will return either null, a primitive/primitive wrapper value, or an empty collection, as appropriate. For example 0 for an int/Integer and false for a boolean/Boolean. 
 
 ## Files List
 ### /pom.xml
