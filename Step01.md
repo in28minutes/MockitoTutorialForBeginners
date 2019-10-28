@@ -4,7 +4,7 @@
 - First Green Bar
 
 ## Useful Snippets
-- You should know JUnit. You can find our free JUnit Course here - [JUnit](https://www.udemy.com/junit-tutorial-for-beginners-with-java-examples/)
+- You should know JUnit. You can find our free JUnit Course here - [JUnit](https://www.udemy.com/course/junit-tutorial-for-beginners-with-java-examples/)
 - Dependencies for JUnit and Mockito are listed below
 
 ```
