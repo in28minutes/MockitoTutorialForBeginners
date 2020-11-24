@@ -213,3 +213,6 @@ public class ListTest {
 
 }
 ```
+
+[Next Step 6](Step06.md)
+

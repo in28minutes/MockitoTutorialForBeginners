@@ -65,3 +65,5 @@ public class FirstMockitoTest {
 
 }
 ```
+
+[Next Step 2](Step02.md)
