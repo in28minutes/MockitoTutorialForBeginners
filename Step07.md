@@ -299,3 +299,5 @@ public class ListTest {
 	}
 }
 ```
+[Next Step 8](Step08.md)
+
