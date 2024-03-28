@@ -14,34 +14,51 @@
 	<artifactId>mockito-tutorial</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<dependencies>
+<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>5.10.2</version>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.10.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-suite-engine</artifactId>
+			<version>1.10.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-inline</artifactId>
+			<version>3.6.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest</artifactId>
+			<version>2.2</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
-			<artifactId>mockito-all</artifactId>
-			<version>1.10.19</version>
+			<artifactId>mockito-core</artifactId>
+			<version>5.4.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>4.5.1</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-library</artifactId>
 			<version>1.3</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.powermock</groupId>
-			<artifactId>powermock-api-mockito</artifactId>
-			<version>1.6.4</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.powermock</groupId>
-			<artifactId>powermock-module-junit4</artifactId>
-			<version>1.6.4</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -51,8 +68,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<release>21</release>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -716,16 +732,16 @@ public class UtilityClass {
 ```
 package com.clarity.business;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Test;
-
 import com.in28minutes.junit.business.ClientBO;
+
+import org.junit.jupiter.api.Test;
 import com.in28minutes.junit.business.ClientBOImpl;
 import com.in28minutes.junit.business.exception.DifferentCurrenciesException;
 import com.in28minutes.junit.model.Amount;
@@ -758,23 +774,25 @@ public class ClientBOTest {
 		assertEquals(new BigDecimal("11.0"), temp.getValue());
 	}
 
-	@Test(expected = DifferentCurrenciesException.class)
+	@Test
 	public void testClientProductSum1() throws DifferentCurrenciesException {
+		assertThrows(DifferentCurrenciesException.class, () -> {
 
-		List<Product> products = new ArrayList<Product>();
+			List<Product> products = new ArrayList<Product>();
 
-		products.add(new ProductImpl(100, "Product 15",
-				ProductType.BANK_GUARANTEE, new AmountImpl(
-						new BigDecimal("5.0"), Currency.INDIAN_RUPEE)));
+			products.add(new ProductImpl(100, "Product 15",
+					ProductType.BANK_GUARANTEE, new AmountImpl(
+							new BigDecimal("5.0"), Currency.INDIAN_RUPEE)));
 
-		products.add(new ProductImpl(120, "Product 20",
-				ProductType.BANK_GUARANTEE, new AmountImpl(
-						new BigDecimal("6.0"), Currency.EURO)));
+			products.add(new ProductImpl(120, "Product 20",
+					ProductType.BANK_GUARANTEE, new AmountImpl(
+							new BigDecimal("6.0"), Currency.EURO)));
 
-		@SuppressWarnings("unused")
-		Amount temp = null;
+			@SuppressWarnings("unused")
+			Amount temp = null;
 
-		temp = clientBO.getClientProductsSum(products);
+			temp = clientBO.getClientProductsSum(products);
+		});
 	}
 
 	@Test
@@ -798,15 +816,16 @@ public class ClientBOTest {
 ```
 package com.clarity.business;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Test;
-
 import com.in28minutes.junit.business.ClientBO;
+
+import org.junit.jupiter.api.Test;
 import com.in28minutes.junit.business.ClientBOImpl;
 import com.in28minutes.junit.business.exception.DifferentCurrenciesException;
 import com.in28minutes.junit.model.Amount;
@@ -837,18 +856,21 @@ public class ClientBOTestRefactored {
 		assertAmount(actual, expected);
 	}
 
-	@Test(expected = DifferentCurrenciesException.class)
+	@Test
 	public void testClientProductSum_DifferentCurrencies_ThrowsException()
 			throws DifferentCurrenciesException {
+		assertThrows(DifferentCurrenciesException.class, () -> {
 
-		Amount[] amounts = {
-				new AmountImpl(new BigDecimal("5.0"), Currency.EURO),
-				new AmountImpl(new BigDecimal("6.0"), Currency.INDIAN_RUPEE) };
+			Amount[] amounts = {
+					new AmountImpl(new BigDecimal("5.0"), Currency.EURO),
+					new AmountImpl(new BigDecimal("6.0"), Currency.INDIAN_RUPEE)};
 
-		List<Product> products = createProductListWithAmounts(amounts);
+			List<Product> products = createProductListWithAmounts(amounts);
 
-		@SuppressWarnings("unused")
-		Amount actual = clientBO.getClientProductsSum(products);
+			@SuppressWarnings("unused")
+			Amount actual = clientBO.getClientProductsSum(products);
+
+		});
 
 	}
 
@@ -888,8 +910,8 @@ public class ClientBOTestRefactored {
 package com.in28minutes.business;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -897,18 +919,18 @@ import static org.mockito.Mockito.when;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.in28minutes.data.api.TodoService;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class TodoBusinessImplMockitoInjectMocksTest {
 	@Mock
 	TodoService todoService;
@@ -986,8 +1008,8 @@ public class TodoBusinessImplMockitoInjectMocksTest {
 package com.in28minutes.business;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -995,22 +1017,19 @@ import static org.mockito.Mockito.when;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.in28minutes.data.api.TodoService;
 
+@ExtendWith(MockitoExtension.class)
 public class TodoBusinessImplMockitoRulesTest {
-
-	@Rule
-	public MockitoRule mockitoRule = MockitoJUnit.rule();
 
 	@Mock
 	TodoService todoService;
@@ -1088,8 +1107,8 @@ public class TodoBusinessImplMockitoRulesTest {
 package com.in28minutes.business;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -1098,7 +1117,7 @@ import static org.mockito.Mockito.when;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
@@ -1184,13 +1203,13 @@ public class TodoBusinessImplMockitoTest {
 ```
 package com.in28minutes.business;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
-import org.junit.Test;
-
 import com.in28minutes.data.api.TodoService;
+
+import org.junit.jupiter.api.Test;
 import com.in28minutes.data.stub.TodoServiceStub;
 
 public class TodoBusinessImplStubTest {
@@ -1229,11 +1248,13 @@ public class TodoServiceStub implements TodoService {
 ```
 package com.in28minutes.junit.helper;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import java.util.Arrays;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
 public class ArraysCompareTest {
 
@@ -1245,14 +1266,17 @@ public class ArraysCompareTest {
 		assertArrayEquals(expected, numbers);
 	}
 
-	@Test(expected=NullPointerException.class)
+	@Test
 	public void testArraySort_NullArray() {
-		int[] numbers = null;
-		Arrays.sort(numbers);
+		assertThrows(NullPointerException.class, () -> {
+			int[] numbers = null;
+			Arrays.sort(numbers);
+		});
 	}
-	
-	@Test(timeout=100)
-	public void testSort_Performance(){
+
+	@Test
+	@Timeout(value = 100)
+	public void testSort_Performance() {
 		int array[] = {12,23,4};
 		for(int i=1;i<=1000000;i++)
 		{
@@ -1267,16 +1291,15 @@ public class ArraysCompareTest {
 ```
 package com.in28minutes.junit.helper;
 
-import static org.junit.Assert.*;
-
-
 import java.util.Arrays;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
 public class ArraysTest {
-	@Test(timeout=100)
-	public void testPerformance() {
+	@Test
+	@Timeout(value = 100)
+	public void performance() {
 		for(int  i=0;i<1000000;i++){
 			Arrays.sort(new int[]{i,i-1,i+1});
 		}
@@ -1287,22 +1310,20 @@ public class ArraysTest {
 ```
 package com.in28minutes.junit.helper;
 
-import static org.junit.Assert.*;
-
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class QuickBeforeAfterTest {
-	
-	@BeforeClass
+
+	@BeforeAll
 	public static void beforeClass(){
 		System.out.println("Before Class");
 	}
-	
-	@Before
+
+	@BeforeEach
 	public void setup(){
 		System.out.println("Before Test");
 	}
@@ -1316,35 +1337,32 @@ public class QuickBeforeAfterTest {
 	public void test2() {
 		System.out.println("test2 executed");
 	}
-	
-	@After
+
+	@AfterEach
 	public void teardown() {
 		System.out.println("After test");
 	}
-	
-	@AfterClass
+
+	@AfterAll
 	public static void afterClass(){
 		System.out.println("After Class");
 	}
 
 }
+
 ```
 ### /src/test/java/com/in28minutes/junit/helper/StringHelperParameterizedTest.java
 ```
 package com.in28minutes.junit.helper;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
-@RunWith(Parameterized.class)
 public class StringHelperParameterizedTest {
 
 	// AACD => CD ACD => CD CDEF=>CDEF CDAA => CDAA
@@ -1353,13 +1371,12 @@ public class StringHelperParameterizedTest {
 	
 	private String input;
 	private String expectedOutput;
-	
-	public StringHelperParameterizedTest(String input, String expectedOutput) {
+
+	public void initStringHelperParameterizedTest(String input, String expectedOutput) {
 		this.input = input;
 		this.expectedOutput = expectedOutput;
 	}
 
-	@Parameters
 	public static Collection<String[]> testConditions() {
 		String expectedOutputs[][] = { 
 				{ "AACD", "CD" }, 
@@ -1367,33 +1384,36 @@ public class StringHelperParameterizedTest {
 		return Arrays.asList(expectedOutputs);
 	}
 
-	@Test
-	public void testTruncateAInFirst2Positions() {
+	@MethodSource("testConditions")
+	@ParameterizedTest
+	public void truncateAInFirst2Positions(String input, String expectedOutput) {
+		initStringHelperParameterizedTest(input, expectedOutput);
 		assertEquals(expectedOutput, 
 				helper.truncateAInFirst2Positions(input));
 	}
 }
+
 ```
 ### /src/test/java/com/in28minutes/junit/helper/StringHelperTest.java
 ```
 package com.in28minutes.junit.helper;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class StringHelperTest {
 
 	// AACD => CD ACD => CD CDEF=>CDEF CDAA => CDAA
 
 	StringHelper helper;
-	
-	@Before
+
+	@BeforeEach
 	public void before(){
 		helper = new StringHelper();
 	}
-	
+
 
 	@Test
 	public void testTruncateAInFirst2Positions_AinFirst2Positions() {
@@ -1425,15 +1445,13 @@ public class StringHelperTest {
 ```
 package com.in28minutes.junit.suite;
 
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-import org.junit.runners.Suite.SuiteClasses;
-
 import com.in28minutes.junit.helper.ArraysTest;
 import com.in28minutes.junit.helper.StringHelperTest;
+import org.junit.platform.suite.api.SelectClasses;
+import org.junit.platform.suite.api.Suite;
 
-@RunWith(Suite.class)
-@SuiteClasses({ArraysTest.class,StringHelperTest.class})
+@Suite
+@SelectClasses({ArraysTest.class,StringHelperTest.class})
 public class DummyTestSuite {
 
 }
@@ -1442,9 +1460,9 @@ public class DummyTestSuite {
 ```
 package com.in28minutes.mockito;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class FirstMockitoTest {
 
@@ -1473,7 +1491,7 @@ import static org.hamcrest.core.Every.everyItem;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class HamcrestMatcherTest {
 
@@ -1503,16 +1521,15 @@ public class HamcrestMatcherTest {
 package com.in28minutes.mockito;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 public class ListTest {
@@ -1540,12 +1557,14 @@ public class ListTest {
 		assertNull(list.get(1));
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void letsMockListGetToThrowException() {
-		List<String> list = mock(List.class);
-		when(list.get(Mockito.anyInt())).thenThrow(
-				new RuntimeException("Something went wrong"));
-		list.get(0);
+		assertThrows(RuntimeException.class, () -> {
+			List<String> list = mock(List.class);
+			when(list.get(Mockito.anyInt())).thenThrow(
+					new RuntimeException("Something went wrong"));
+			list.get(0);
+		});
 	}
 
 	@Test
@@ -1575,15 +1594,14 @@ public class ListTest {
 ```
 package com.in28minutes.mockito;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.stub;
 import static org.mockito.Mockito.verify;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class SpyTest {
 
@@ -1599,90 +1617,28 @@ public class SpyTest {
 		assertEquals(2, listSpy.size());
 		assertEquals("Ranga", listSpy.get(0));
 	}
-
-	@Test
-	public void creatingASpyOnArrayList_overridingSpecificMethods() {
-		List<String> listSpy = spy(ArrayList.class);
-		listSpy.add("Ranga");
-		listSpy.add("in28Minutes");
-
-		stub(listSpy.size()).toReturn(-1);
-
-		assertEquals(-1, listSpy.size());
-		assertEquals("Ranga", listSpy.get(0));
-
-		// @Spy Annotation
-	}
-
 }
 ```
-### /src/test/java/com/in28minutes/powermock/PowerMockitoMockingConstructorTest.java
+
+### /src/test/java/com/in28minutes/powermock/MockitoMockingStaticMethodTest.java
 ```
 package com.in28minutes.powermock;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.stub;
-
-import java.util.ArrayList;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
-
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({ SystemUnderTest.class /*To be able to mock the Constructor, we need to add in the Class that creates the new object*/})
-public class PowerMockitoMockingConstructorTest {
-
-	private static final int SOME_DUMMY_SIZE = 100;
-
-	@Mock
-	Dependency dependencyMock;
-
-	@InjectMocks
-	SystemUnderTest systemUnderTest;
-
-	@Test
-	public void powerMockito_MockingAConstructor() throws Exception {
-
-		ArrayList<String> mockList = mock(ArrayList.class);
-
-		stub(mockList.size()).toReturn(SOME_DUMMY_SIZE);
-
-		PowerMockito.whenNew(ArrayList.class).withAnyArguments().thenReturn(
-				mockList);
-
-		int size = systemUnderTest.methodUsingAnArrayListConstructor();
-
-		assertEquals(SOME_DUMMY_SIZE, size);
-	}
-}
-```
-### /src/test/java/com/in28minutes/powermock/PowerMockitoMockingStaticMethodTest.java
-```
-package com.in28minutes.powermock;
-
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.anyLong;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.*;
 
 import java.util.Arrays;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
+import org.mockito.MockedStatic;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({ UtilityClass.class /*The class with static method to be mocked*/})
-public class PowerMockitoMockingStaticMethodTest {
+@ExtendWith(MockitoExtension.class)
+public class MockitoMockingStaticMethodTest {
 
 	@Mock
 	Dependency dependencyMock;
@@ -1692,25 +1648,15 @@ public class PowerMockitoMockingStaticMethodTest {
 
 	@Test
 	public void powerMockito_MockingAStaticMethodCall() {
+		when(dependencyMock.retrieveAllStats()).thenReturn(Arrays.asList(1, 2, 3));
 
-		when(dependencyMock.retrieveAllStats()).thenReturn(
-				Arrays.asList(1, 2, 3));
+		MockedStatic<UtilityClass> mockedStatic = mockStatic(UtilityClass.class);
 
-		PowerMockito.mockStatic(UtilityClass.class);
-
-		when(UtilityClass.staticMethod(anyLong())).thenReturn(150);
+		mockedStatic.when(() -> UtilityClass.staticMethod(anyLong())).thenReturn(150);
 
 		assertEquals(150, systemUnderTest.methodCallingAStaticMethod());
 
-		//To verify a specific method call
-		//First : Call PowerMockito.verifyStatic() 
-		//Second : Call the method to be verified
-		PowerMockito.verifyStatic();
-		UtilityClass.staticMethod(1 + 2 + 3);
-
-		// verify exact number of calls
-		//PowerMockito.verifyStatic(Mockito.times(1));
-
+		mockedStatic.verify(() -> UtilityClass.staticMethod(1 + 2 + 3), times(1));
 	}
 }
 ```
@@ -1718,19 +1664,19 @@ public class PowerMockitoMockingStaticMethodTest {
 ```
 package com.in28minutes.powermock;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
+import java.lang.reflect.Method;
 import java.util.Arrays;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.powermock.modules.junit4.PowerMockRunner;
-import org.powermock.reflect.Whitebox;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-@RunWith(PowerMockRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class PowerMockitoTestingPrivateMethodTest {
 
 	@Mock
@@ -1741,10 +1687,10 @@ public class PowerMockitoTestingPrivateMethodTest {
 
 	@Test
 	public void powerMockito_CallingAPrivateMethod() throws Exception {
-		when(dependencyMock.retrieveAllStats()).thenReturn(
-				Arrays.asList(1, 2, 3));
-		long value = (Long) Whitebox.invokeMethod(systemUnderTest,
-				"privateMethodUnderTest");
+		Method method = systemUnderTest.getClass().getDeclaredMethod("privateMethodUnderTest");
+		method.setAccessible(true);
+		when(dependencyMock.retrieveAllStats()).thenReturn(Arrays.asList(1, 2, 3));
+		long value = (Long) method.invoke(systemUnderTest);
 		assertEquals(6, value);
 	}
 }
