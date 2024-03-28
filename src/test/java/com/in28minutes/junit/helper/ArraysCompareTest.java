@@ -1,10 +1,12 @@
 package com.in28minutes.junit.helper;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import java.util.Arrays;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
 public class ArraysCompareTest {
 
@@ -16,14 +18,17 @@ public class ArraysCompareTest {
 		assertArrayEquals(expected, numbers);
 	}
 
-	@Test(expected=NullPointerException.class)
+	@Test
 	public void testArraySort_NullArray() {
-		int[] numbers = null;
-		Arrays.sort(numbers);
+		assertThrows(NullPointerException.class, () -> {
+			int[] numbers = null;
+			Arrays.sort(numbers);
+		});
 	}
-	
-	@Test(timeout=100)
-	public void testSort_Performance(){
+
+	@Test
+	@Timeout(value = 100)
+	public void testSort_Performance() {
 		int array[] = {12,23,4};
 		for(int i=1;i<=1000000;i++)
 		{

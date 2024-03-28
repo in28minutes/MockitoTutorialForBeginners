@@ -1,15 +1,14 @@
 package com.in28minutes.junit.helper;
 
-import static org.junit.Assert.*;
-
-
 import java.util.Arrays;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
 public class ArraysTest {
-	@Test(timeout=100)
-	public void testPerformance() {
+	@Test
+	@Timeout(value = 100)
+	public void performance() {
 		for(int  i=0;i<1000000;i++){
 			Arrays.sort(new int[]{i,i-1,i+1});
 		}

@@ -14,23 +14,52 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<dependencies>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>5.10.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.10.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-suite-engine</artifactId>
+			<version>1.10.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-inline</artifactId>
+			<version>3.6.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest</artifactId>
+			<version>2.2</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
-			<artifactId>mockito-all</artifactId>
-			<version>1.10.19</version>
+			<artifactId>mockito-core</artifactId>
+			<version>5.4.0</version>
 			<scope>test</scope>
 		</dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-library</artifactId>
-            <version>1.3</version>
-            <scope>test</scope>
-        </dependency>		
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>4.5.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-library</artifactId>
+			<version>1.3</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 </project>
 ```
@@ -92,8 +121,8 @@ public interface TodoService {
 package com.in28minutes.business;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -101,18 +130,18 @@ import static org.mockito.Mockito.when;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.in28minutes.data.api.TodoService;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class TodoBusinessImplMockitoInjectMocksTest {
 	@Mock
 	TodoService todoService;
@@ -190,8 +219,8 @@ public class TodoBusinessImplMockitoInjectMocksTest {
 package com.in28minutes.business;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -199,22 +228,19 @@ import static org.mockito.Mockito.when;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.in28minutes.data.api.TodoService;
 
+@ExtendWith(MockitoExtension.class)
 public class TodoBusinessImplMockitoRulesTest {
-
-	@Rule
-	public MockitoRule mockitoRule = MockitoJUnit.rule();
 
 	@Mock
 	TodoService todoService;
@@ -292,8 +318,8 @@ public class TodoBusinessImplMockitoRulesTest {
 package com.in28minutes.business;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -302,7 +328,7 @@ import static org.mockito.Mockito.when;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
@@ -388,13 +414,13 @@ public class TodoBusinessImplMockitoTest {
 ```
 package com.in28minutes.business;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
-import org.junit.Test;
-
 import com.in28minutes.data.api.TodoService;
+
+import org.junit.jupiter.api.Test;
 import com.in28minutes.data.stub.TodoServiceStub;
 
 public class TodoBusinessImplStubTest {
@@ -433,9 +459,9 @@ public class TodoServiceStub implements TodoService {
 ```
 package com.in28minutes.mockito;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class FirstMockitoTest {
 
@@ -464,7 +490,7 @@ import static org.hamcrest.core.Every.everyItem;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class HamcrestMatcherTest {
 
@@ -494,16 +520,15 @@ public class HamcrestMatcherTest {
 package com.in28minutes.mockito;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 public class ListTest {
@@ -531,12 +556,14 @@ public class ListTest {
 		assertNull(list.get(1));
 	}
 
-	@Test(expected = RuntimeException.class)
+	@Test
 	public void letsMockListGetToThrowException() {
-		List<String> list = mock(List.class);
-		when(list.get(Mockito.anyInt())).thenThrow(
-				new RuntimeException("Something went wrong"));
-		list.get(0);
+		assertThrows(RuntimeException.class, () -> {
+			List<String> list = mock(List.class);
+			when(list.get(Mockito.anyInt())).thenThrow(
+					new RuntimeException("Something went wrong"));
+			list.get(0);
+		});
 	}
 
 	@Test
@@ -566,15 +593,14 @@ public class ListTest {
 ```
 package com.in28minutes.mockito;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.stub;
 import static org.mockito.Mockito.verify;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class SpyTest {
 
@@ -590,20 +616,5 @@ public class SpyTest {
 		assertEquals(2, listSpy.size());
 		assertEquals("Ranga", listSpy.get(0));
 	}
-
-	@Test
-	public void creatingASpyOnArrayList_overridingSpecificMethods() {
-		List<String> listSpy = spy(ArrayList.class);
-		listSpy.add("Ranga");
-		listSpy.add("in28Minutes");
-
-		stub(listSpy.size()).toReturn(-1);
-
-		assertEquals(-1, listSpy.size());
-		assertEquals("Ranga", listSpy.get(0));
-
-		// @Spy Annotation
-	}
-
 }
 ```

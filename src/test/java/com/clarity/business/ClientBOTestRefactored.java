@@ -1,14 +1,15 @@
 package com.clarity.business;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Test;
-
 import com.in28minutes.junit.business.ClientBO;
+
+import org.junit.jupiter.api.Test;
 import com.in28minutes.junit.business.ClientBOImpl;
 import com.in28minutes.junit.business.exception.DifferentCurrenciesException;
 import com.in28minutes.junit.model.Amount;
@@ -39,18 +40,21 @@ public class ClientBOTestRefactored {
 		assertAmount(actual, expected);
 	}
 
-	@Test(expected = DifferentCurrenciesException.class)
+	@Test
 	public void testClientProductSum_DifferentCurrencies_ThrowsException()
 			throws DifferentCurrenciesException {
+		assertThrows(DifferentCurrenciesException.class, () -> {
 
-		Amount[] amounts = {
-				new AmountImpl(new BigDecimal("5.0"), Currency.EURO),
-				new AmountImpl(new BigDecimal("6.0"), Currency.INDIAN_RUPEE) };
+			Amount[] amounts = {
+					new AmountImpl(new BigDecimal("5.0"), Currency.EURO),
+					new AmountImpl(new BigDecimal("6.0"), Currency.INDIAN_RUPEE)};
 
-		List<Product> products = createProductListWithAmounts(amounts);
+			List<Product> products = createProductListWithAmounts(amounts);
 
-		@SuppressWarnings("unused")
-		Amount actual = clientBO.getClientProductsSum(products);
+			@SuppressWarnings("unused")
+			Amount actual = clientBO.getClientProductsSum(products);
+
+		});
 
 	}
 
