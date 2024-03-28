@@ -1,15 +1,15 @@
 package com.clarity.business;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Test;
-
 import com.in28minutes.junit.business.ClientBO;
+
+import org.junit.jupiter.api.Test;
 import com.in28minutes.junit.business.ClientBOImpl;
 import com.in28minutes.junit.business.exception.DifferentCurrenciesException;
 import com.in28minutes.junit.model.Amount;
@@ -42,23 +42,25 @@ public class ClientBOTest {
 		assertEquals(new BigDecimal("11.0"), temp.getValue());
 	}
 
-	@Test(expected = DifferentCurrenciesException.class)
+	@Test
 	public void testClientProductSum1() throws DifferentCurrenciesException {
+		assertThrows(DifferentCurrenciesException.class, () -> {
 
-		List<Product> products = new ArrayList<Product>();
+			List<Product> products = new ArrayList<Product>();
 
-		products.add(new ProductImpl(100, "Product 15",
-				ProductType.BANK_GUARANTEE, new AmountImpl(
-						new BigDecimal("5.0"), Currency.INDIAN_RUPEE)));
+			products.add(new ProductImpl(100, "Product 15",
+					ProductType.BANK_GUARANTEE, new AmountImpl(
+							new BigDecimal("5.0"), Currency.INDIAN_RUPEE)));
 
-		products.add(new ProductImpl(120, "Product 20",
-				ProductType.BANK_GUARANTEE, new AmountImpl(
-						new BigDecimal("6.0"), Currency.EURO)));
+			products.add(new ProductImpl(120, "Product 20",
+					ProductType.BANK_GUARANTEE, new AmountImpl(
+							new BigDecimal("6.0"), Currency.EURO)));
 
-		@SuppressWarnings("unused")
-		Amount temp = null;
+			@SuppressWarnings("unused")
+			Amount temp = null;
 
-		temp = clientBO.getClientProductsSum(products);
+			temp = clientBO.getClientProductsSum(products);
+		});
 	}
 
 	@Test
